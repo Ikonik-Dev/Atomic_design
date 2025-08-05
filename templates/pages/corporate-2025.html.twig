@@ -1,0 +1,389 @@
+{#
+    Page: Corporate Homepage 2025
+    Description: Page d'accueil corporate moderne avec focus sur l'accessibilité
+    
+    Cette page respecte les standards WCAG 2.1 AA avec :
+    - Contraste des couleurs optimisé
+    - Navigation au clavier fluide
+    - Tailles de polices accessibles
+    - Structure sémantique claire
+    - Support des technologies d'assistance
+#}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}GuillaumeTel - Solutions d'Intelligence Artificielle Corporate 2025{% endblock %}
+
+{% block description %}Découvrez les solutions d'IA les plus avancées pour transformer votre entreprise. GuillaumeTel vous accompagne dans l'adoption des modèles de langage pour optimiser vos processus métier.{% endblock %}
+
+{% block body %}
+    {# Skip link pour l'accessibilité #}
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    
+    {# Header accessible #}
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header__container">
+                <a href="/" class="header__logo" aria-label="GuillaumeTel - Retour à l'accueil">
+                    <span aria-hidden="true">🤖</span>
+                    <span>GuillaumeTel</span>
+                </a>
+                
+                <nav class="header__nav" role="navigation" aria-label="Navigation principale">
+                    <ul class="nav" role="list">
+                        <li class="nav__item"><a href="/" class="nav__link nav__link--active" aria-current="page">Accueil</a></li>
+                        <li class="nav__item"><a href="/solutions" class="nav__link">Solutions</a></li>
+                        <li class="nav__item"><a href="/services" class="nav__link">Services</a></li>
+                        <li class="nav__item"><a href="/ressources" class="nav__link">Ressources</a></li>
+                        <li class="nav__item"><a href="/contact" class="nav__link">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="header__mobile-menu" 
+                        type="button" 
+                        aria-label="Ouvrir le menu de navigation"
+                        aria-expanded="false"
+                        aria-controls="mobile-menu">
+                    <span aria-hidden="true">☰</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        {# Hero Section #}
+        <section class="hero" role="banner" aria-labelledby="hero-title">
+            <div class="container">
+                <div class="hero__content">
+                    <h1 id="hero-title" class="hero__title">
+                        Transformez votre entreprise avec l'<em>Intelligence Artificielle</em>
+                    </h1>
+                    
+                    <p class="hero__subtitle">
+                        Découvrez comment les modèles de langage révolutionnent les processus métier. 
+                        Nos solutions IA sur mesure optimisent votre productivité et accélèrent votre croissance.
+                    </p>
+                    
+                    <div class="hero__actions">
+                        {% include 'atomic/atoms/button.html.twig' with {
+                            text: 'Découvrir nos solutions',
+                            variant: 'primary',
+                            size: 'lg',
+                            href: '/solutions',
+                            ariaLabel: 'Découvrir nos solutions d\'intelligence artificielle'
+                        } %}
+                        
+                        {% include 'atomic/atoms/button.html.twig' with {
+                            text: 'Demander une démo',
+                            variant: 'outline',
+                            size: 'lg',
+                            href: '/demo',
+                            ariaLabel: 'Demander une démonstration de nos solutions'
+                        } %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# Stats Section #}
+        <section class="section" aria-labelledby="stats-title">
+            <div class="container">
+                <h2 id="stats-title" class="sr-only">Nos résultats en chiffres</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card__number" aria-label="Plus de 500 entreprises">500+</div>
+                        <div class="stat-card__label">Entreprises accompagnées</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-card__number" aria-label="95 pour cent de satisfaction">95%</div>
+                        <div class="stat-card__label">Taux de satisfaction</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-card__number" aria-label="40 pour cent d'amélioration">+40%</div>
+                        <div class="stat-card__label">Gain de productivité</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-card__number" aria-label="24 heures sur 7 jours">24/7</div>
+                        <div class="stat-card__label">Support technique</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# Solutions Section #}
+        <section class="section section--alt" aria-labelledby="solutions-title">
+            <div class="container">
+                <div class="section__header">
+                    <h2 id="solutions-title" class="section__title">Nos Solutions IA Corporate</h2>
+                    <p class="section__subtitle">
+                        Des technologies de pointe adaptées à vos besoins métier
+                    </p>
+                </div>
+                
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature__icon" aria-hidden="true">🎯</div>
+                        <h3 class="feature__title">Analyse Prédictive</h3>
+                        <p class="feature__description">
+                            Anticipez les tendances du marché et optimisez vos décisions stratégiques 
+                            grâce à nos modèles d'analyse prédictive avancés.
+                        </p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature__icon" aria-hidden="true">💬</div>
+                        <h3 class="feature__title">Assistants Conversationnels</h3>
+                        <p class="feature__description">
+                            Automatisez votre support client avec des chatbots intelligents 
+                            capables de comprendre et répondre en langage naturel.
+                        </p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature__icon" aria-hidden="true">📊</div>
+                        <h3 class="feature__title">Traitement Documentaire</h3>
+                        <p class="feature__description">
+                            Extraiyez automatiquement les informations clés de vos documents 
+                            et optimisez vos processus de gestion documentaire.
+                        </p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature__icon" aria-hidden="true">⚡</div>
+                        <h3 class="feature__title">Automatisation Intelligente</h3>
+                        <p class="feature__description">
+                            Automatisez vos tâches répétitives avec des workflows intelligents 
+                            qui s'adaptent à votre contexte métier.
+                        </p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature__icon" aria-hidden="true">🔐</div>
+                        <h3 class="feature__title">Sécurité & Conformité</h3>
+                        <p class="feature__description">
+                            Bénéficiez de solutions IA sécurisées, conformes RGPD 
+                            et adaptées aux exigences réglementaires de votre secteur.
+                        </p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature__icon" aria-hidden="true">📈</div>
+                        <h3 class="feature__title">Tableaux de Bord IA</h3>
+                        <p class="feature__description">
+                            Visualisez vos données métier avec des dashboards intelligents 
+                            qui génèrent des insights actionnables en temps réel.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# Process Section #}
+        <section class="section" aria-labelledby="process-title">
+            <div class="container">
+                <div class="section__header">
+                    <h2 id="process-title" class="section__title">Notre Approche en 4 Étapes</h2>
+                    <p class="section__subtitle">
+                        Une méthodologie éprouvée pour garantir le succès de votre transformation IA
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4">
+                    <div class="card">
+                        <div class="card__header">
+                            <div class="badge badge--primary">Étape 1</div>
+                            <h3 class="card__title">Audit & Analyse</h3>
+                        </div>
+                        <div class="card__content">
+                            <p class="card__description">
+                                Évaluation complète de vos processus actuels et identification 
+                                des opportunités d'optimisation par l'IA.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card__header">
+                            <div class="badge badge--secondary">Étape 2</div>
+                            <h3 class="card__title">Stratégie & Roadmap</h3>
+                        </div>
+                        <div class="card__content">
+                            <p class="card__description">
+                                Définition d'une stratégie IA personnalisée avec un plan 
+                                de déploiement progressif et mesurable.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card__header">
+                            <div class="badge badge--success">Étape 3</div>
+                            <h3 class="card__title">Développement & Test</h3>
+                        </div>
+                        <div class="card__content">
+                            <p class="card__description">
+                                Création et test des solutions IA avec des prototypes 
+                                validés sur des cas d'usage réels.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card__header">
+                            <div class="badge badge--warning">Étape 4</div>
+                            <h3 class="card__title">Déploiement & Support</h3>
+                        </div>
+                        <div class="card__content">
+                            <p class="card__description">
+                                Mise en production accompagnée de formation et 
+                                support continu pour garantir l'adoption.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# Testimonials Section #}
+        <section class="section section--alt" aria-labelledby="testimonials-title">
+            <div class="container">
+                <div class="section__header">
+                    <h2 id="testimonials-title" class="section__title">Ils nous font confiance</h2>
+                    <p class="section__subtitle">
+                        Découvrez comment nos clients transforment leur business avec l'IA
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3">
+                    <figure class="card">
+                        <blockquote class="card__content">
+                            <p class="card__description">
+                                "Grâce à GuillaumeTel, nous avons automatisé 70% de notre support client. 
+                                Les résultats dépassent nos attentes avec une satisfaction client en hausse."
+                            </p>
+                        </blockquote>
+                        <figcaption class="card__footer">
+                            <strong>Marie Dubois</strong><br>
+                            <span class="text-secondary">DG, TechCorp Solutions</span>
+                        </figcaption>
+                    </figure>
+                    
+                    <figure class="card">
+                        <blockquote class="card__content">
+                            <p class="card__description">
+                                "L'IA prédictive nous permet d'anticiper la demande avec 95% de précision. 
+                                Un game-changer pour notre chaîne d'approvisionnement."
+                            </p>
+                        </blockquote>
+                        <figcaption class="card__footer">
+                            <strong>Jean-Pierre Martin</strong><br>
+                            <span class="text-secondary">Directeur Logistique, Global Trade</span>
+                        </figcaption>
+                    </figure>
+                    
+                    <figure class="card">
+                        <blockquote class="card__content">
+                            <p class="card__description">
+                                "Le ROI de notre investissement IA s'est concrétisé en moins de 6 mois. 
+                                Une équipe exceptionnelle et des résultats concrets."
+                            </p>
+                        </blockquote>
+                        <figcaption class="card__footer">
+                            <strong>Sophie Leclerc</strong><br>
+                            <span class="text-secondary">CFO, Innovation Finance</span>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        {# CTA Section #}
+        <section class="cta-section" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta-section__content">
+                    <h2 id="cta-title" class="cta-section__title">
+                        Prêt à transformer votre entreprise ?
+                    </h2>
+                    <p class="cta-section__description">
+                        Rejoignez plus de 500 entreprises qui font confiance à GuillaumeTel 
+                        pour leur transformation digitale et découvrez le potentiel de l'IA pour votre business.
+                    </p>
+                    
+                    <div class="hero__actions">
+                        {% include 'atomic/atoms/button.html.twig' with {
+                            text: 'Demander une consultation gratuite',
+                            variant: 'secondary',
+                            size: 'xl',
+                            href: '/consultation',
+                            ariaLabel: 'Demander une consultation gratuite avec nos experts IA'
+                        } %}
+                        
+                        {% include 'atomic/atoms/button.html.twig' with {
+                            text: 'Télécharger notre livre blanc',
+                            variant: 'ghost',
+                            size: 'xl',
+                            href: '/livre-blanc-ia',
+                            ariaLabel: 'Télécharger notre guide complet sur la transformation IA'
+                        } %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {# Footer accessible #}
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h3 class="footer__title">GuillaumeTel</h3>
+                    <p class="text-on-dark-muted">
+                        Votre partenaire de confiance pour l'adoption de l'intelligence artificielle 
+                        dans votre entreprise.
+                    </p>
+                </div>
+                
+                <div class="footer__section">
+                    <h3 class="footer__title">Solutions</h3>
+                    <ul class="footer__links">
+                        <li><a href="/analyse-predictive" class="footer__link">Analyse Prédictive</a></li>
+                        <li><a href="/chatbots" class="footer__link">Assistants IA</a></li>
+                        <li><a href="/traitement-documentaire" class="footer__link">Traitement Documentaire</a></li>
+                        <li><a href="/automatisation" class="footer__link">Automatisation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__section">
+                    <h3 class="footer__title">Services</h3>
+                    <ul class="footer__links">
+                        <li><a href="/consulting" class="footer__link">Consulting IA</a></li>
+                        <li><a href="/formation" class="footer__link">Formation</a></li>
+                        <li><a href="/support" class="footer__link">Support Technique</a></li>
+                        <li><a href="/maintenance" class="footer__link">Maintenance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__section">
+                    <h3 class="footer__title">Contact</h3>
+                    <ul class="footer__links">
+                        <li><a href="tel:+33123456789" class="footer__link">+33 1 23 45 67 89</a></li>
+                        <li><a href="mailto:contact@guillaumetel.fr" class="footer__link">contact@guillaumetel.fr</a></li>
+                        <li><a href="/contact" class="footer__link">Formulaire de contact</a></li>
+                        <li><a href="/rendez-vous" class="footer__link">Prendre rendez-vous</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>&copy; {{ 'now'|date('Y') }} GuillaumeTel. Tous droits réservés. | 
+                   <a href="/mentions-legales" class="footer__link">Mentions légales</a> | 
+                   <a href="/politique-confidentialite" class="footer__link">Politique de confidentialité</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

@@ -1,24 +1,37 @@
 {#
-    Atom: Input
-    Description: Champ de saisie réutilisable
+    Atom: Input Accessible 2025
+    Description: Champ de saisie optimisé pour l'accessibilité WCAG 2.1 AA
     Props:
-    - type: Type d'input (text, email, password, etc.)
+    - id: ID unique du champ (requis pour l'accessibilité)
     - name: Nom du champ
-    - placeholder: Texte de placeholder
+    - type: Type de champ (text, email, password, search, tel, url)
+    - placeholder: Texte d'aide
     - value: Valeur par défaut
     - required: Champ obligatoire
+    - disabled: Champ désactivé
+    - readonly: Champ en lecture seule
+    - ariaLabel: Label aria si pas de label visible
+    - ariaDescribedBy: ID de l'élément qui décrit le champ
+    - ariaInvalid: Indique si le champ est invalide
+    - autocomplete: Attribut autocomplete
     - class: Classes CSS supplémentaires
 #}
 
-{% set inputClass = 'input' %}
+{% set inputId = id|default('input-' ~ random()) %}
+{% set inputType = type|default('text') %}
+{% set inputClass = 'form-input' %}
 {% set inputClass = inputClass ~ ' ' ~ (class|default('')) %}
 
-<input 
-    type="{{ type|default('text') }}" 
-    name="{{ name }}" 
-    class="{{ inputClass }}"
-    {% if placeholder is defined %}placeholder="{{ placeholder }}"{% endif %}
-    {% if value is defined %}value="{{ value }}"{% endif %}
-    {% if required is defined and required %}required{% endif %}
-    {% if attributes is defined %}{{ attributes|raw }}{% endif %}
-/>
+<input type="{{ inputType }}"
+       id="{{ inputId }}"
+       {% if name is defined %}name="{{ name }}"{% endif %}
+       class="{{ inputClass }}"
+       {% if placeholder is defined %}placeholder="{{ placeholder }}"{% endif %}
+       {% if value is defined %}value="{{ value }}"{% endif %}
+       {% if required is defined and required %}required aria-required="true"{% endif %}
+       {% if disabled is defined and disabled %}disabled{% endif %}
+       {% if readonly is defined and readonly %}readonly{% endif %}
+       {% if ariaLabel is defined %}aria-label="{{ ariaLabel }}"{% endif %}
+       {% if ariaDescribedBy is defined %}aria-describedby="{{ ariaDescribedBy }}"{% endif %}
+       {% if ariaInvalid is defined %}aria-invalid="{{ ariaInvalid ? 'true' : 'false' }}"{% endif %}
+       {% if autocomplete is defined %}autocomplete="{{ autocomplete }}"{% endif %}>

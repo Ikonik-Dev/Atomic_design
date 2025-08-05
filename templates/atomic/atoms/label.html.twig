@@ -1,19 +1,19 @@
 {#
-    Atom: Label
-    Description: Label réutilisable pour les formulaires
+    Atom: Label Accessible 2025
+    Description: Label de formulaire optimisé pour l'accessibilité WCAG 2.1 AA
     Props:
-    - text: Texte du label
-    - for: ID de l'élément associé
-    - required: Affiche un indicateur de champ obligatoire
+    - for: ID du champ associé (requis)
+    - text: Texte du label (requis)
+    - required: Indique si le champ est obligatoire
     - class: Classes CSS supplémentaires
 #}
 
-{% set labelClass = 'label' %}
+{% set labelClass = 'form-label' %}
+{% if required is defined and required %}
+    {% set labelClass = labelClass ~ ' form-label--required' %}
+{% endif %}
 {% set labelClass = labelClass ~ ' ' ~ (class|default('')) %}
 
-<label class="{{ labelClass }}" {% if for is defined %}for="{{ for }}"{% endif %}>
-    {{ text|default('Label') }}
-    {% if required is defined and required %}
-        <span class="label__required">*</span>
-    {% endif %}
+<label for="{{ for }}" class="{{ labelClass }}">
+    {{ text }}
 </label>

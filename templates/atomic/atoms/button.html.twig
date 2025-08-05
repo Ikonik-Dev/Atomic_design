@@ -1,26 +1,45 @@
 {#
-    Atom: Button
-    Description: Bouton réutilisable avec différents styles (primary, secondary, outline)
+    Atom: Button Accessible 2025
+    Description: Bouton réutilisable avec accessibilité optimisée WCAG 2.1 AA
     Props:
-    - text: Texte du bouton
-    - type: Type du bouton (button, submit, reset)
-    - variant: Style du bouton (primary, secondary, outline)
-    - size: Taille du bouton (small, medium, large)
+    - text: Texte du bouton (requis)
+    - type: Type HTML (button, submit, reset)
+    - variant: Style (primary, secondary, outline, ghost)
+    - size: Taille (sm, base, lg, xl)
     - href: URL si c'est un lien
+    - disabled: État désactivé
+    - ariaLabel: Label aria pour l'accessibilité
+    - ariaDescribedBy: ID de l'élément qui décrit le bouton
     - class: Classes CSS supplémentaires
 #}
 
-{% set buttonClass = 'btn' %}
-{% set buttonClass = buttonClass ~ ' btn--' ~ (variant|default('primary')) %}
-{% set buttonClass = buttonClass ~ ' btn--' ~ (size|default('medium')) %}
+{% set buttonType = type|default('button') %}
+{% set buttonVariant = variant|default('primary') %}
+{% set buttonSize = size|default('base') %}
+{% set buttonClass = 'btn btn--' ~ buttonVariant %}
+
+{# Ajout de la classe de taille seulement si différente de base #}
+{% if buttonSize != 'base' %}
+    {% set buttonClass = buttonClass ~ ' btn--' ~ buttonSize %}
+{% endif %}
+
 {% set buttonClass = buttonClass ~ ' ' ~ (class|default('')) %}
 
 {% if href is defined %}
-    <a href="{{ href }}" class="{{ buttonClass }}" {% if attributes is defined %}{{ attributes|raw }}{% endif %}>
-        {{ text|default('Button') }}
+    <a href="{{ href }}" 
+       class="{{ buttonClass }}"
+       role="button"
+       {% if ariaLabel is defined %}aria-label="{{ ariaLabel }}"{% endif %}
+       {% if ariaDescribedBy is defined %}aria-describedby="{{ ariaDescribedBy }}"{% endif %}
+       {% if disabled is defined and disabled %}aria-disabled="true" tabindex="-1"{% endif %}>
+        {{ text|default('Lien') }}
     </a>
 {% else %}
-    <button type="{{ type|default('button') }}" class="{{ buttonClass }}" {% if attributes is defined %}{{ attributes|raw }}{% endif %}>
-        {{ text|default('Button') }}
+    <button type="{{ buttonType }}" 
+            class="{{ buttonClass }}"
+            {% if disabled is defined and disabled %}disabled{% endif %}
+            {% if ariaLabel is defined %}aria-label="{{ ariaLabel }}"{% endif %}
+            {% if ariaDescribedBy is defined %}aria-describedby="{{ ariaDescribedBy }}"{% endif %}>
+        {{ text|default('Bouton') }}
     </button>
 {% endif %}

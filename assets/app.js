@@ -5,6 +5,9 @@ import './bootstrap.js';
  * This file will be included onto the page via the importmap() Twig function,
  * which should already be in your base.html.twig.
  */
-import './styles/app.css';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+// Import des nouveaux styles accessibles 2025
+import './styles/accessible-design-2025.css';
+import './styles/components-accessible-2025.css';
+
+console.log('GuillaumeTel Corporate 2025 - Styles accessibles chargés! 🎉♿');
