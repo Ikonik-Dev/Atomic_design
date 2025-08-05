@@ -1,0 +1,51 @@
+{#
+    Molecule: Card
+    Description: Carte d'informations avec image, titre et description
+    Props:
+    - title: Titre de la carte
+    - description: Description de la carte
+    - image: URL de l'image
+    - imageAlt: Texte alternatif de l'image
+    - href: Lien de la carte
+    - class: Classes CSS supplémentaires
+#}
+
+{% set cardClass = 'card' %}
+{% set cardClass = cardClass ~ ' ' ~ (class|default('')) %}
+
+<div class="{{ cardClass }}">
+    {% if image is defined %}
+        <div class="card__image">
+            {% include 'atomic/atoms/image.html.twig' with {
+                src: image,
+                alt: imageAlt|default(title|default('Card image')),
+                class: 'card__img',
+                lazy: true
+            } %}
+        </div>
+    {% endif %}
+    
+    <div class="card__content">
+        {% if title is defined %}
+            {% include 'atomic/atoms/heading.html.twig' with {
+                level: 3,
+                text: title,
+                class: 'card__title'
+            } %}
+        {% endif %}
+        
+        {% if description is defined %}
+            <p class="card__description">{{ description }}</p>
+        {% endif %}
+        
+        {% if href is defined %}
+            {% include 'atomic/atoms/button.html.twig' with {
+                href: href,
+                text: 'En savoir plus',
+                variant: 'outline',
+                size: 'small',
+                class: 'card__button'
+            } %}
+        {% endif %}
+    </div>
+</div>

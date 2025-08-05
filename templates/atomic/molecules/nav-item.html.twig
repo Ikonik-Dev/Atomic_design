@@ -1,0 +1,30 @@
+{#
+    Molecule: Navigation Item
+    Description: Élément de navigation avec lien et icône optionnelle
+    Props:
+    - text: Texte du lien
+    - href: URL du lien
+    - icon: Nom de l'icône (optionnel)
+    - active: Élément actif (true/false)
+    - class: Classes CSS supplémentaires
+#}
+
+{% set navItemClass = 'nav-item' %}
+{% if active is defined and active %}
+    {% set navItemClass = navItemClass ~ ' nav-item--active' %}
+{% endif %}
+{% set navItemClass = navItemClass ~ ' ' ~ (class|default('')) %}
+
+<li class="{{ navItemClass }}">
+    <a href="{{ href|default('#') }}" class="nav-item__link">
+        {% if icon is defined %}
+            <span class="nav-item__icon">
+                {% include 'atomic/atoms/icon.html.twig' with {
+                    name: icon,
+                    size: 'small'
+                } %}
+            </span>
+        {% endif %}
+        <span class="nav-item__text">{{ text|default('Navigation') }}</span>
+    </a>
+</li>

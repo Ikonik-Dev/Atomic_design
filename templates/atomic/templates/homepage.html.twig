@@ -1,0 +1,43 @@
+{#
+    Template: Homepage
+    Description: Template de la page d'accueil utilisant l'architecture Atomic Design
+    
+    Ce template combine tous les organismes pour créer la page d'accueil complète
+    de GuillaumeTel, une application de référencement des LLM populaires.
+#}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}GuillaumeTel - Votre référence pour les modèles de langage{% endblock %}
+
+{% block body %}
+    {# En-tête principal avec navigation #}
+    {% include 'atomic/organisms/header.html.twig' %}
+    
+    <main class="main">
+        {# Section héro avec titre principal et recherche #}
+        {% include 'atomic/organisms/hero.html.twig' with {
+            title: 'Découvrez le monde des LLM',
+            subtitle: 'Votre guide complet pour naviguer dans l\'univers des modèles de langage',
+            description: 'GuillaumeTel vous aide à explorer, comparer et choisir parmi les meilleurs modèles de langage disponibles. De GPT-4 à Llama 2, trouvez l\'IA qui transformera vos projets.',
+            ctaText: 'Explorer les LLM',
+            ctaHref: '/llm',
+            backgroundImage: 'https://picsum.photos/1920/1080?random=10'
+        } %}
+        
+        {# Section des fonctionnalités principales #}
+        {% include 'atomic/organisms/features.html.twig' with {
+            title: 'Pourquoi choisir GuillaumeTel ?',
+            subtitle: 'Découvrez les avantages de notre plateforme de référencement des modèles de langage'
+        } %}
+        
+        {# Grille des LLM populaires #}
+        {% include 'atomic/organisms/llm-grid.html.twig' with {
+            title: 'LLM Populaires',
+            subtitle: 'Explorez les modèles de langage les plus performants et populaires du marché'
+        } %}
+    </main>
+    
+    {# Pied de page #}
+    {% include 'atomic/organisms/footer.html.twig' %}
+{% endblock %}

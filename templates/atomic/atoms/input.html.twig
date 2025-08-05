@@ -1,0 +1,24 @@
+{#
+    Atom: Input
+    Description: Champ de saisie réutilisable
+    Props:
+    - type: Type d'input (text, email, password, etc.)
+    - name: Nom du champ
+    - placeholder: Texte de placeholder
+    - value: Valeur par défaut
+    - required: Champ obligatoire
+    - class: Classes CSS supplémentaires
+#}
+
+{% set inputClass = 'input' %}
+{% set inputClass = inputClass ~ ' ' ~ (class|default('')) %}
+
+<input 
+    type="{{ type|default('text') }}" 
+    name="{{ name }}" 
+    class="{{ inputClass }}"
+    {% if placeholder is defined %}placeholder="{{ placeholder }}"{% endif %}
+    {% if value is defined %}value="{{ value }}"{% endif %}
+    {% if required is defined and required %}required{% endif %}
+    {% if attributes is defined %}{{ attributes|raw }}{% endif %}
+/>

@@ -1,0 +1,37 @@
+{#
+    Molecule: Feature Item
+    Description: Élément de fonctionnalité avec icône, titre et description
+    Props:
+    - icon: Nom de l'icône
+    - title: Titre de la fonctionnalité
+    - description: Description de la fonctionnalité
+    - class: Classes CSS supplémentaires
+#}
+
+{% set featureClass = 'feature' %}
+{% set featureClass = featureClass ~ ' ' ~ (class|default('')) %}
+
+<div class="{{ featureClass }}">
+    {% if icon is defined %}
+        <div class="feature__icon">
+            {% include 'atomic/atoms/icon.html.twig' with {
+                name: icon,
+                size: 'large'
+            } %}
+        </div>
+    {% endif %}
+    
+    <div class="feature__content">
+        {% if title is defined %}
+            {% include 'atomic/atoms/heading.html.twig' with {
+                level: 3,
+                text: title,
+                class: 'feature__title'
+            } %}
+        {% endif %}
+        
+        {% if description is defined %}
+            <p class="feature__description">{{ description }}</p>
+        {% endif %}
+    </div>
+</div>

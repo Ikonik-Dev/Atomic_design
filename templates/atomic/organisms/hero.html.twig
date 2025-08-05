@@ -1,0 +1,70 @@
+{#
+    Organism: Hero Section
+    Description: Section héro avec titre, sous-titre et CTA
+    Props:
+    - title: Titre principal
+    - subtitle: Sous-titre
+    - description: Description
+    - ctaText: Texte du bouton CTA
+    - ctaHref: Lien du bouton CTA
+    - backgroundImage: Image de fond
+    - class: Classes CSS supplémentaires
+#}
+
+{% set heroClass = 'hero' %}
+{% set heroClass = heroClass ~ ' ' ~ (class|default('')) %}
+
+<section class="{{ heroClass }}">
+    <div class="hero__background">
+        {% if backgroundImage is defined %}
+            {% include 'atomic/atoms/image.html.twig' with {
+                src: backgroundImage,
+                alt: 'Background image',
+                class: 'hero__bg-image'
+            } %}
+        {% endif %}
+        <div class="hero__overlay"></div>
+    </div>
+    
+    <div class="container">
+        <div class="hero__content">
+            {% if title is defined %}
+                {% include 'atomic/atoms/heading.html.twig' with {
+                    level: 1,
+                    text: title,
+                    class: 'hero__title'
+                } %}
+            {% endif %}
+            
+            {% if subtitle is defined %}
+                {% include 'atomic/atoms/heading.html.twig' with {
+                    level: 2,
+                    text: subtitle,
+                    class: 'hero__subtitle'
+                } %}
+            {% endif %}
+            
+            {% if description is defined %}
+                <p class="hero__description">{{ description }}</p>
+            {% endif %}
+            
+            <div class="hero__actions">
+                {% if ctaText is defined and ctaHref is defined %}
+                    {% include 'atomic/atoms/button.html.twig' with {
+                        text: ctaText,
+                        href: ctaHref,
+                        variant: 'primary',
+                        size: 'large',
+                        class: 'hero__cta'
+                    } %}
+                {% endif %}
+                
+                {# Formulaire de recherche #}
+                {% include 'atomic/molecules/search-form.html.twig' with {
+                    placeholder: 'Rechercher un LLM (GPT, Claude, Llama...)',
+                    class: 'hero__search'
+                } %}
+            </div>
+        </div>
+    </div>
+</section>

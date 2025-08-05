@@ -1,0 +1,26 @@
+{#
+    Atom: Heading
+    Description: Titre réutilisable avec différents niveaux
+    Props:
+    - level: Niveau du titre (1-6)
+    - text: Texte du titre
+    - class: Classes CSS supplémentaires
+#}
+
+{% set headingLevel = level|default(1) %}
+{% set headingClass = 'heading heading--h' ~ headingLevel %}
+{% set headingClass = headingClass ~ ' ' ~ (class|default('')) %}
+
+{% if headingLevel == 1 %}
+    <h1 class="{{ headingClass }}">{{ text|default('Titre') }}</h1>
+{% elseif headingLevel == 2 %}
+    <h2 class="{{ headingClass }}">{{ text|default('Titre') }}</h2>
+{% elseif headingLevel == 3 %}
+    <h3 class="{{ headingClass }}">{{ text|default('Titre') }}</h3>
+{% elseif headingLevel == 4 %}
+    <h4 class="{{ headingClass }}">{{ text|default('Titre') }}</h4>
+{% elseif headingLevel == 5 %}
+    <h5 class="{{ headingClass }}">{{ text|default('Titre') }}</h5>
+{% else %}
+    <h6 class="{{ headingClass }}">{{ text|default('Titre') }}</h6>
+{% endif %}

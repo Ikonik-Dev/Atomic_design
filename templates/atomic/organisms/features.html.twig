@@ -1,0 +1,56 @@
+{#
+    Organism: Features Section
+    Description: Section des fonctionnalités principales
+    Props:
+    - title: Titre de la section
+    - subtitle: Sous-titre de la section
+    - features: Array des fonctionnalités
+    - class: Classes CSS supplémentaires
+#}
+
+{% set featuresClass = 'features' %}
+{% set featuresClass = featuresClass ~ ' ' ~ (class|default('')) %}
+
+<section class="{{ featuresClass }}">
+    <div class="container">
+        {% if title is defined or subtitle is defined %}
+            <div class="features__header">
+                {% if title is defined %}
+                    {% include 'atomic/atoms/heading.html.twig' with {
+                        level: 2,
+                        text: title,
+                        class: 'features__title'
+                    } %}
+                {% endif %}
+                
+                {% if subtitle is defined %}
+                    <p class="features__subtitle">{{ subtitle }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+        
+        <div class="features__grid">
+            {% set defaultFeatures = [
+                {
+                    icon: 'search',
+                    title: 'Recherche Avancée',
+                    description: 'Trouvez rapidement le LLM qui correspond à vos besoins spécifiques grâce à notre moteur de recherche intelligent.'
+                },
+                {
+                    icon: 'star',
+                    title: 'Comparaisons Détaillées',
+                    description: 'Comparez les performances, les coûts et les fonctionnalités de différents modèles de langage en un coup d\'œil.'
+                },
+                {
+                    icon: 'heart',
+                    title: 'Recommandations Personnalisées',
+                    description: 'Recevez des suggestions adaptées à votre secteur d\'activité et à vos contraintes techniques.'
+                }
+            ] %}
+            
+            {% for feature in features|default(defaultFeatures) %}
+                {% include 'atomic/molecules/feature-item.html.twig' with feature %}
+            {% endfor %}
+        </div>
+    </div>
+</section>

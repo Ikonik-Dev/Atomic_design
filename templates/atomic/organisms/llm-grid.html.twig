@@ -1,0 +1,87 @@
+{#
+    Organism: LLM Cards Grid
+    Description: Grille de cartes présentant les LLM populaires
+    Props:
+    - title: Titre de la section
+    - subtitle: Sous-titre de la section
+    - llms: Array des LLM à afficher
+    - class: Classes CSS supplémentaires
+#}
+
+{% set llmGridClass = 'llm-grid' %}
+{% set llmGridClass = llmGridClass ~ ' ' ~ (class|default('')) %}
+
+<section class="{{ llmGridClass }}">
+    <div class="container">
+        {% if title is defined or subtitle is defined %}
+            <div class="llm-grid__header">
+                {% if title is defined %}
+                    {% include 'atomic/atoms/heading.html.twig' with {
+                        level: 2,
+                        text: title,
+                        class: 'llm-grid__title'
+                    } %}
+                {% endif %}
+                
+                {% if subtitle is defined %}
+                    <p class="llm-grid__subtitle">{{ subtitle }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+        
+        <div class="llm-grid__cards">
+            {% set defaultLlms = [
+                {
+                    title: 'GPT-4',
+                    description: 'Le modèle de langage le plus avancé d\'OpenAI, capable de comprendre et de générer du texte avec une précision remarquable.',
+                    image: 'https://picsum.photos/400/200?random=1',
+                    href: '/llm/gpt-4'
+                },
+                {
+                    title: 'Claude 3',
+                    description: 'L\'assistant IA d\'Anthropic, conçu pour être utile, inoffensif et honnête dans toutes ses interactions.',
+                    image: 'https://picsum.photos/400/200?random=2',
+                    href: '/llm/claude-3'
+                },
+                {
+                    title: 'Llama 2',
+                    description: 'Le modèle open-source de Meta, offrant des performances exceptionnelles pour une variété de tâches de traitement du langage.',
+                    image: 'https://picsum.photos/400/200?random=3',
+                    href: '/llm/llama-2'
+                },
+                {
+                    title: 'Gemini',
+                    description: 'Le modèle multimodal de Google, capable de traiter du texte, des images et du code de manière intégrée.',
+                    image: 'https://picsum.photos/400/200?random=4',
+                    href: '/llm/gemini'
+                },
+                {
+                    title: 'PaLM 2',
+                    description: 'Le modèle de Google AI optimisé pour le raisonnement, le codage et les tâches mathématiques complexes.',
+                    image: 'https://picsum.photos/400/200?random=5',
+                    href: '/llm/palm-2'
+                },
+                {
+                    title: 'Mistral AI',
+                    description: 'Le modèle français haute performance, conçu pour être efficace et respectueux de la vie privée.',
+                    image: 'https://picsum.photos/400/200?random=6',
+                    href: '/llm/mistral'
+                }
+            ] %}
+            
+            {% for llm in llms|default(defaultLlms) %}
+                {% include 'atomic/molecules/card.html.twig' with llm %}
+            {% endfor %}
+        </div>
+        
+        <div class="llm-grid__footer">
+            {% include 'atomic/atoms/button.html.twig' with {
+                text: 'Voir tous les LLM',
+                href: '/llm',
+                variant: 'outline',
+                size: 'large',
+                class: 'llm-grid__view-all'
+            } %}
+        </div>
+    </div>
+</section>

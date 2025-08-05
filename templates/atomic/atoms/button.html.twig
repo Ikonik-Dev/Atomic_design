@@ -1,0 +1,26 @@
+{#
+    Atom: Button
+    Description: Bouton réutilisable avec différents styles (primary, secondary, outline)
+    Props:
+    - text: Texte du bouton
+    - type: Type du bouton (button, submit, reset)
+    - variant: Style du bouton (primary, secondary, outline)
+    - size: Taille du bouton (small, medium, large)
+    - href: URL si c'est un lien
+    - class: Classes CSS supplémentaires
+#}
+
+{% set buttonClass = 'btn' %}
+{% set buttonClass = buttonClass ~ ' btn--' ~ (variant|default('primary')) %}
+{% set buttonClass = buttonClass ~ ' btn--' ~ (size|default('medium')) %}
+{% set buttonClass = buttonClass ~ ' ' ~ (class|default('')) %}
+
+{% if href is defined %}
+    <a href="{{ href }}" class="{{ buttonClass }}" {% if attributes is defined %}{{ attributes|raw }}{% endif %}>
+        {{ text|default('Button') }}
+    </a>
+{% else %}
+    <button type="{{ type|default('button') }}" class="{{ buttonClass }}" {% if attributes is defined %}{{ attributes|raw }}{% endif %}>
+        {{ text|default('Button') }}
+    </button>
+{% endif %}

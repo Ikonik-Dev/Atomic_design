@@ -1,0 +1,31 @@
+{#
+    Atom: Icon
+    Description: Icône SVG réutilisable
+    Props:
+    - name: Nom de l'icône
+    - size: Taille de l'icône (small, medium, large)
+    - class: Classes CSS supplémentaires
+#}
+
+{% set iconClass = 'icon' %}
+{% set iconClass = iconClass ~ ' icon--' ~ (size|default('medium')) %}
+{% set iconClass = iconClass ~ ' ' ~ (class|default('')) %}
+
+<svg class="{{ iconClass }}" aria-hidden="true">
+    {% if name == 'search' %}
+        <path d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    {% elseif name == 'menu' %}
+        <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    {% elseif name == 'close' %}
+        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    {% elseif name == 'arrow-right' %}
+        <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    {% elseif name == 'star' %}
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    {% elseif name == 'heart' %}
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    {% else %}
+        {# Icône par défaut - un point #}
+        <circle cx="12" cy="12" r="2" fill="currentColor"/>
+    {% endif %}
+</svg>

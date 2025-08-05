@@ -1,0 +1,57 @@
+{#
+    Organism: Header
+    Description: En-tête principal du site avec navigation
+    Props:
+    - logo: URL ou texte du logo
+    - navigation: Array des éléments de navigation
+    - class: Classes CSS supplémentaires
+#}
+
+{% set headerClass = 'header' %}
+{% set headerClass = headerClass ~ ' ' ~ (class|default('')) %}
+
+<header class="{{ headerClass }}">
+    <div class="container">
+        <div class="header__wrapper">
+            {# Logo #}
+            <div class="header__logo">
+                <a href="/" class="header__logo-link">
+                    {% if logo is defined %}
+                        {{ logo }}
+                    {% else %}
+                        {% include 'atomic/atoms/heading.html.twig' with {
+                            level: 1,
+                            text: 'GuillaumeTel',
+                            class: 'header__logo-text'
+                        } %}
+                    {% endif %}
+                </a>
+            </div>
+            
+            {# Navigation principale #}
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    {% set defaultNavigation = [
+                        { text: 'Accueil', href: '/', active: true },
+                        { text: 'LLM', href: '/llm' },
+                        { text: 'Comparaisons', href: '/comparisons' },
+                        { text: 'À propos', href: '/about' },
+                        { text: 'Contact', href: '/contact' }
+                    ] %}
+                    
+                    {% for item in navigation|default(defaultNavigation) %}
+                        {% include 'atomic/molecules/nav-item.html.twig' with item %}
+                    {% endfor %}
+                </ul>
+            </nav>
+            
+            {# Bouton menu mobile #}
+            <button class="header__menu-toggle" type="button" aria-label="Menu">
+                {% include 'atomic/atoms/icon.html.twig' with {
+                    name: 'menu',
+                    size: 'medium'
+                } %}
+            </button>
+        </div>
+    </div>
+</header>

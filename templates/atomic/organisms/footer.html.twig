@@ -1,0 +1,76 @@
+{#
+    Organism: Footer
+    Description: Pied de page du site
+    Props:
+    - class: Classes CSS supplémentaires
+#}
+
+{% set footerClass = 'footer' %}
+{% set footerClass = footerClass ~ ' ' ~ (class|default('')) %}
+
+<footer class="{{ footerClass }}">
+    <div class="container">
+        <div class="footer__content">
+            <div class="footer__section">
+                <div class="footer__logo">
+                    {% include 'atomic/atoms/heading.html.twig' with {
+                        level: 3,
+                        text: 'GuillaumeTel',
+                        class: 'footer__logo-text'
+                    } %}
+                    <p class="footer__description">
+                        Votre référence pour naviguer dans l'univers des modèles de langage.
+                        Découvrez, comparez et choisissez le LLM parfait pour vos projets.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer__section">
+                {% include 'atomic/atoms/heading.html.twig' with {
+                    level: 4,
+                    text: 'Navigation',
+                    class: 'footer__section-title'
+                } %}
+                <ul class="footer__nav-list">
+                    <li><a href="/" class="footer__nav-link">Accueil</a></li>
+                    <li><a href="/llm" class="footer__nav-link">LLM</a></li>
+                    <li><a href="/comparisons" class="footer__nav-link">Comparaisons</a></li>
+                    <li><a href="/about" class="footer__nav-link">À propos</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                {% include 'atomic/atoms/heading.html.twig' with {
+                    level: 4,
+                    text: 'Ressources',
+                    class: 'footer__section-title'
+                } %}
+                <ul class="footer__nav-list">
+                    <li><a href="/blog" class="footer__nav-link">Blog</a></li>
+                    <li><a href="/documentation" class="footer__nav-link">Documentation</a></li>
+                    <li><a href="/api" class="footer__nav-link">API</a></li>
+                    <li><a href="/contact" class="footer__nav-link">Support</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__section">
+                {% include 'atomic/atoms/heading.html.twig' with {
+                    level: 4,
+                    text: 'Légal',
+                    class: 'footer__section-title'
+                } %}
+                <ul class="footer__nav-list">
+                    <li><a href="/privacy" class="footer__nav-link">Confidentialité</a></li>
+                    <li><a href="/terms" class="footer__nav-link">Conditions d'utilisation</a></li>
+                    <li><a href="/cookies" class="footer__nav-link">Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer__bottom">
+            <p class="footer__copyright">
+                © {{ 'now'|date('Y') }} GuillaumeTel. Tous droits réservés.
+            </p>
+        </div>
+    </div>
+</footer>

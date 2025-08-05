@@ -1,0 +1,37 @@
+{#
+    Molecule: Search Form
+    Description: Formulaire de recherche combinant un input et un bouton
+    Props:
+    - placeholder: Texte du placeholder
+    - action: URL d'action du formulaire
+    - method: Méthode HTTP (GET par défaut)
+    - class: Classes CSS supplémentaires
+#}
+
+{% set searchFormClass = 'search-form' %}
+{% set searchFormClass = searchFormClass ~ ' ' ~ (class|default('')) %}
+
+<form class="{{ searchFormClass }}" action="{{ action|default('/search') }}" method="{{ method|default('GET') }}">
+    <div class="search-form__wrapper">
+        {% include 'atomic/atoms/input.html.twig' with {
+            type: 'search',
+            name: 'q',
+            placeholder: placeholder|default('Rechercher un LLM...'),
+            class: 'search-form__input'
+        } %}
+        
+        {% include 'atomic/atoms/button.html.twig' with {
+            type: 'submit',
+            variant: 'primary',
+            class: 'search-form__button',
+            text: ''
+        } %}
+        
+        <div class="search-form__icon">
+            {% include 'atomic/atoms/icon.html.twig' with {
+                name: 'search',
+                size: 'medium'
+            } %}
+        </div>
+    </div>
+</form>

@@ -1,17 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}GuillaumeTel - Votre référence pour les modèles de langage{% endblock %}</title>
+        <meta name="description" content="{% block description %}Découvrez, comparez et choisissez parmi les meilleurs modèles de langage (LLM) disponibles. GPT-4, Claude, Llama et plus encore.{% endblock %}">
+        
+        {# Favicon #}
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🤖</text></svg>">
+        
+        {# Google Fonts - Inter pour une typographie moderne #}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        
         {% block stylesheets %}
+            {# Styles principaux de l'application #}
+            {{ importmap('app') }}
         {% endblock %}
 
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
+        
+        {# Meta tags pour les réseaux sociaux #}
+        <meta property="og:title" content="{% block og_title %}{{ block('title') }}{% endblock %}">
+        <meta property="og:description" content="{% block og_description %}{{ block('description') }}{% endblock %}">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://picsum.photos/1200/630?random=100">
+        
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ block('og_title') }}">
+        <meta name="twitter:description" content="{{ block('og_description') }}">
+        <meta name="twitter:image" content="https://picsum.photos/1200/630?random=100">
     </head>
     <body>
         {% block body %}{% endblock %}
+        
+        {# Script pour l'interaction mobile du menu (si nécessaire plus tard) #}
+        <script>
+            // Animation d'apparition progressive au chargement
+            document.addEventListener('DOMContentLoaded', function() {
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity 0.3s ease-in-out';
+                
+                setTimeout(function() {
+                    document.body.style.opacity = '1';
+                }, 100);
+            });
+        </script>
     </body>
 </html>
